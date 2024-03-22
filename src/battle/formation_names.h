@@ -1,6 +1,7 @@
 #pragma once
 
 enum BattleNames {
+    BTL_JAM_FORMATION_00       = 0x0000,
     BTL_KMR_1_FORMATION_00     = 0x0000,
     BTL_KMR_1_FORMATION_01     = 0x0001,
     BTL_KMR_1_FORMATION_02     = 0x0002,
