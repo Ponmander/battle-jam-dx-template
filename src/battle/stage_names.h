@@ -3,6 +3,7 @@
 #define BTL_STAGE_DEFAULT -1
 
 enum StageNames {
+    BTL_JAM_STAGE_00           = 0x00,
     BTL_KMR_1_STAGE_00         = 0x00,
     BTL_KMR_1_STAGE_01         = 0x01,
     BTL_KMR_1_STAGE_02         = 0x02,

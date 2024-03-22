@@ -87,6 +87,8 @@ ActorBlueprint NAMESPACE = {
     .statusTextOffset = { 10, 20 },
 };
 
+#endif // NESTED_GOOMBA_INCLUDE
+
 s32 N(DefaultAnims)[] = {
     STATUS_KEY_NORMAL,    ANIM_Goomba_Idle,
     STATUS_KEY_STONE,     ANIM_Goomba_Still,

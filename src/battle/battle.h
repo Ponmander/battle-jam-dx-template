@@ -8,6 +8,7 @@
 #define STAGE_MODEL_LIST_END 0
 
 enum BattleAreaIDs {
+    BTL_AREA_JAM           = 0x00,
     BTL_AREA_KMR_1         = 0x00,
     BTL_AREA_KMR_2         = 0x01,
     BTL_AREA_KMR_3         = 0x02,
