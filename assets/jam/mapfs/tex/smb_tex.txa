@@ -1,0 +1,161 @@
+tex: smb_lava
+{
+	img: smb_lava.png
+	{
+		format: RGBA-16
+		hwrap: repeat
+		vwrap: repeat
+	}
+	aux: smb_lava_AUX.png
+	{
+		format: shared
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_lavaflow
+{
+	img: smb_lavaflow.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_castlebrick
+{
+	img: smb_castlebrick.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_castlepattern
+{
+	img: smb_castlepattern.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_castletile
+{
+	img: smb_castletile.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_castletrim
+{
+	img: smb_castletrim.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_castlewall
+{
+	img: smb_castlewall.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_castlefloor
+{
+	img: smb_castlefloor.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_bowserstatue
+{
+	img: smb_bowserstatue.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_pillar
+{
+	img: smb_pillar.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_lavaflow
+{
+	img: smb_lavaflow.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_pillar
+{
+	img: smb_pillar.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}
+
+tex: smb_lavawave
+{
+	img: smb_lavawave.png
+	{
+		format: CI-4
+		hwrap: repeat
+		vwrap: repeat
+	}
+	filter: yes
+	combine: 8
+}

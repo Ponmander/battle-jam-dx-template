@@ -72,6 +72,8 @@ vram_classes:
   - [entity_model_anim, 0x00000000]
   - { name: dgb_01_smash_bridges, vram: 0x80200000, vram_symbol: D_80200000 }
 asset_stack:
+  - star_rod_build
+  - jam
   - dx
   - us
 segments:
@@ -6733,7 +6735,7 @@ segments:
     start: auto
     vram_class: battle_area
     subsegments:
-    - [auto, c, actor/test]
+    - [auto, c, actor/false_bowser]
     - [auto, c, area]
 
 #######################
@@ -14563,6 +14565,7 @@ segments:
       - 2C_QuizQuestions
       - 2D_QuizChoices
       - 2E_Credits
+      - 2F_Misc
   - [0x1C84D30, bin, unk_1C84D30] # junk(?)
   - [0x1E00000, bin, copy_1E00000] # copy of 0x1943000 - 0x1983000
   - [0x1E40000, pm_map_data, mapfs]
