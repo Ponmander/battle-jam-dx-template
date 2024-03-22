@@ -6727,6 +6727,13 @@ segments:
     - [auto, c, script/dig_03]
     - [auto, c, script/dig_04]
     - [auto, c, script/dig_05]
+  - dir: battle/area/jam
+    type: code
+    start: auto
+    vram_class: battle_area
+    subsegments:
+    - [auto, c, actor/test]
+    - [auto, c, area]
 
 #######################
 ### Battle Partners ###
