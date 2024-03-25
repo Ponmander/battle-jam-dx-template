@@ -1,0 +1,713 @@
+% Define .False Bowser Animations
+#define .Anim:FalseBowser_Still 00810900
+#define .Anim:FalseBowser_RearUpStill 00810901
+#define .Anim:FalseBowser_Idle 00810902
+#define .Anim:FalseBowser_Walk 00810903
+#define .Anim:FalseBowser_Run 00810904
+#define .Anim:FalseBowser_Talk 00810905
+#define .Anim:FalseBowser_RearUpTalk 00810906
+#define .Anim:FalseBowser_Mock 00810907
+#define .Anim:FalseBowser_RearUpLaugh 00810908
+#define .Anim:FalseBowser_RearUpMock 00810909
+#define .Anim:FalseBowser_AnnoyedStill 0081090A
+#define .Anim:FalseBowser_AnnoyedTalk 0081090B
+#define .Anim:FalseBowser_Tantrum 0081090C
+#define .Anim:FalseBowser_Hurt 0081090D
+#define .Anim:FalseBowser_HurtStill 0081090E
+#define .Anim:FalseBowser_Brandish 0081090F
+#define .Anim:FalseBowser_BrandishStill 00810910
+#define .Anim:FalseBowser_PreJump 00810911
+#define .Anim:FalseBowser_Jump 00810912
+#define .Anim:FalseBowser_Land 00810913
+#define .Anim:FalseBowser_PostJump 00810914
+#define .Anim:FalseBowser_Swipe 00810915
+#define .Anim:FalseBowser_PreFireBreath 00810916
+#define .Anim:FalseBowser_FireBreathStill 00810917
+#define .Anim:FalseBowser_FireBreathLoop 00810918
+#define .Anim:FalseBowser_PostFireBreath 00810919
+#define .Anim:FalseBowser_StompOnce 0081091A
+#define .Anim:FalseBowser_DefeatedStill 0081091B
+#define .Anim:FalseBowser_DefeatedIdle 0081091C
+#define .Anim:FalseBowser_DefeatedTalk 0081091D
+#define .Anim:FalseBowser_BrandishIdle 0081091E
+#define .Anim:FalseBowser_BrandishTalk 0081091F
+#define .Anim:FalseBowser_BurnHurt 00810920
+#define .Anim:FalseBowser_BurnStill 00810921
+
+% Define .False Bowser Parts
+#define .Part:FalseBowser 1
+
+% .False Bowser Actor Variables
+#define .AVar:TurnCount 0`
+
+% .False Bowser Damage
+#define .Damage:Jump 1`
+#define .Damage:FireBall 1`
+
+#new:IdleAnimations $IdleAnimations_FalseBowser
+{
+    .Status:Normal    .Anim:FalseBowser_Idle
+    .Status:STONE     .Anim:FalseBowser_Still
+    .Status:Sleep     .Anim:FalseBowser_Idle
+    .Status:Poison    .Anim:FalseBowser_Idle
+    .Status:Stop      .Anim:FalseBowser_Still
+    .Status:Static    .Anim:FalseBowser_Still
+    .Status:Paralyze  .Anim:FalseBowser_Still
+    .Status:Paralyze  .Anim:FalseBowser_Still
+    .Status:Dizzy     .Anim:FalseBowser_Idle
+    .Status:Dizzy     .Anim:FalseBowser_Idle
+    .Status:END
+}
+
+#new:DefenseTable $DefenseTable_FalseBowser
+{
+    .Element:Normal  0`
+    .Element:End
+}
+
+#new:StatusTable $StatusTable_FalseBowser
+{
+    .Status:Normal              0`
+    .Status:Default             0`
+    .Status:Sleep              30`
+    .Status:Poison              0`
+    .Status:Frozen              0`
+    .Status:Dizzy              30`
+    .Status:Fear                0`
+    .Status:Static              0`
+    .Status:Paralyze           30`
+    .Status:Shrink             50`
+    .Status:Stop               30`
+    .Status:TurnModDefault        0`
+    .Status:TurnModSleep         -1`
+    .Status:TurnModPoison         0`
+    .Status:TurnModFrozen         0`
+    .Status:TurnModDizzy         -1`
+    .Status:TurnModFear           0`
+    .Status:TurnModStatic         0`
+    .Status:TurnModParalyze      -1`
+    .Status:TurnModShrink        -1`
+    .Status:TurnModStop          -2`
+    .Status:End
+}
+
+#new:PartsTable $PartsTable_FalseBowser % ActorPartBlueprint struct in decomp
+{
+    /% s32 flags %/                 00800000
+    /% s8 index %/                  ~Byte:.Part:FalseBowser
+    /% Vec3b posOffset %/           0`b 0`b 0`b
+    /% Vec2b targetOffset %/        -18`b 72`b % For cursor when selecting to attack in battle
+    /% s16 opacity %/               00FFs
+    /% s32* IdleAnimations %/       $IdleAnimations_FalseBowser
+    /% s32* defenseTable %/         $DefenseTable_FalseBowser
+    /% s32 eventFlags %/            00000000
+    /% s32 elementImmunityFlags %/  00000000
+    /% s8 unk_1C %/                 00b
+    /% s8 unk_1D %/                 F6b
+    /% s8 unk_1E %/                 00b
+    /% s8 unk_1F %/                 00b
+    /% s8 unk_20 %/                 00000000
+
+	/% Fire Ball %/
+    /% s32 flags %/                 00120001
+    /% s8 index %/                  ~Byte:.Part:FireBall
+    /% Vec3b posOffset %/           0`b 0`b 0`b
+    /% Vec2b targetOffset %/        0`b 0`b %for cursor when selecting to attack in battle
+    /% s16 opacity %/               00FFs
+    /% s32* IdleAnimations %/       $IdleAnimations_FireBall
+    /% s32* defenseTable %/         00000000
+    /% s32 eventFlags %/            00000000
+    /% s32 elementImmunityFlags %/  00000000
+    /% s8 unk_1C %/                 00b
+    /% s8 unk_1D %/                 00b
+    /% s8 unk_1E %/                 00b
+    /% s8 unk_1F %/                 00b
+    /% s8 unk_20 %/                 00000000
+}
+
+#new:Actor $FalseBowser
+{
+% stats
+[Index]        D4b
+[Level]        10`b
+[MaxHP]        10`b
+[Coins]         0`b
+[Flags]       00000204
+[StatusTable] $StatusTable_FalseBowser
+% ai
+[PartsCount]   1`s
+[PartsTable] $PartsTable_FalseBowser
+[Script]      $Script_Init_FalseBowser
+% move effectiveness
+[Escape]        0`b %no escape
+[Item]          0`b
+[AirLift]       0`b
+[Hurricane]     0`b % Bow's "Spook" as well
+[UpAndAway]     0`b
+[PowerBounce]   4`b
+[SpinSmash]     4`b % weight (0-4)
+% ui positions
+[Size]        80`b 82`b % width height
+[HealthBar]     0`b   0`b % dx dy
+[StatusTurn]  -40`b 67`b % dx dy (usually top left)
+[StatusIcon]   10`b 60`b % dx dy (usually top right)
+}
+
+#new:Script $Script_Init_FalseBowser
+{
+    Call SetActorVar ( .Actor:Self .AVar:TurnCount 0)
+    Call BindTakeTurn ( .Actor:Self $Script_TakeTurn_FalseBowser )
+    Call BindIdle ( .Actor:Self $Script_Idle_FalseBowser )
+    Call BindHandleEvent ( .Actor:Self $Script_HandleEvent_FalseBowser)
+    Call BindNextTurn ( .Actor:Self $Script_NextTurn_FalseBowser )
+    Return
+    End
+}
+
+#new:Script $Script_Idle_FalseBowser
+{
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Call GetAnimation ( .Actor:Self .Part:FalseBowser *Var3 )
+    Label(0)
+        Call ActorExists ( .Actor:Self *VarB )
+        If == *VarB 0
+            Return
+        EndIf
+        Call GetStatusFlags ( .Actor:Self *VarB )
+        IfNotFlag(*VarB .Status:FLAG_Shrink)
+            Call ModifyActorDecoration ( .Actor:Self .Part:FalseBowser 1 100 0 0 0 )
+        Else
+            Call ModifyActorDecoration ( .Actor:Self .Part:FalseBowser 1 40 0 0 0 )
+        EndIf
+        ExecWait $Script_PlayFootstepSounds
+        Wait(1)
+        Goto(0)
+    Return
+    End
+}
+
+#new:Script $Script_PlayFootstepSounds
+{
+    Call GetAnimation ( .Actor:Self .Part:FalseBowser *Var7 )
+    If != *Var7 .Anim:FalseBowser_Walk
+        If == *Var3 .Anim:FalseBowser_Walk
+            Call PlaySoundAtActor ( .Actor:Self SOUND_GOOMBA_STEP )
+            Call PlaySoundAtActor ( .Actor:Self SOUND_GOOMBA_STEP )
+        EndIf
+        Set *Var3 *Var7
+        Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+        Return
+    EndIf
+    Call GetActorPos ( .Actor:Self *Var5 *Var6 *Var7 )
+    Sub *Var5 *Var0
+    IfGt *Var5 -30`
+        IfLt *Var5 30`
+            Set *Var3 *Var7
+            Return
+        EndIf
+    EndIf
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Call PlaySoundAtActor ( .Actor:Self SOUND_GOOMBA_STEP )
+    Call PlaySoundAtActor ( .Actor:Self SOUND_GOOMBA_STEP )
+    Set *Var3 *Var7
+    Return
+    End
+}
+
+#new:Script $Script_HandlePhase
+{
+    Call UseIdleAnimation ( .Actor:Self .False )
+    Call EnableIdleScript ( .Actor:Self .True )
+    Call UseIdleAnimation ( .Actor:Self .True )
+    Return
+    End
+}
+
+#new:Script $Script_HandleEvent
+{
+    Call UseIdleAnimation ( .Actor:Self .False )
+    Call GetLastEvent ( .Actor:Self *Var0 )
+    Switch *Var0
+        Case == .Event:HitCombo
+            Set *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_Hit
+            Return
+        Case == .Event:Hit
+            Set *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_BasicHit
+            Return
+        Case == .Event:Death
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_Hit
+            Wait 10
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_Death
+            Return
+        Case == .Event:BurnHit
+            Set *Var0 .Part:FalseBowser
+            Set *Var1 .Anim:FalseBowser_BurnHurt
+            Set *Var2 .Anim:FalseBowser_BurnStill
+            ExecWait $Script_BurnHit
+            Return
+        Case == .Event:BurnDeath
+            Set *Var0 .Part:FalseBowser
+            Set *Var1 .Anim:FalseBowser_BurnHurt
+            Set *Var2 .Anim:FalseBowser_BurnStill
+            ExecWait $Script_BurnHit
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_BurnStill
+            ExecWait $Script_Death
+            Return
+        Case == .Event:SpinSmashHit
+            Set *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_BasicHit
+            Return
+        Case == .Event:SpinSmashHit
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_Hit
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_Death
+            Return
+        Case == .Event:ShockHit
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait EVS_Enemy_ShockHit
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_ShockReaction
+            Call SetActorSpeed ( .Actor:Self *Fixed[4.5] )
+            Set *Var1 .Anim:FalseBowser_Walk
+            ExecWait $Script_ReturnHome
+        Case == .Event:ShockDeath
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait EVS_Enemy_ShockHit
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_ShockReaction
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Hurt
+            ExecWait $Script_Death
+            Return
+        CaseOR == 00000017
+        CaseOR == .Event:Immune
+            Set *Var1 .Anim:FalseBowser_Idle
+            ExecWait $Script_NoDamageHit
+        EndCaseGroup
+        Case == (EVENT_AIR_LIFT_FAILED)
+            SetConst *Var0 .Part:FalseBowser
+            Set *Var1 .Anim:FalseBowser_Idle
+            ExecWait DoImmune
+        Case == (EVENT_RECOVER_STATUS)
+            SetConst *Var0 .Part:FalseBowser
+            SetConst *Var1 .Anim:FalseBowser_Jump
+            ExecWait DoRecover
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PostJump )
+            Call ShakeCam ( CAM_BATTLE 0 4 *Fixed[3.0] )
+        Default
+    EndSwitch
+    Call UseIdleAnimation ( .Actor:Self .True )
+    Return
+    End
+}
+
+#new:Script $Script_BasicHit
+ {
+    ExecWait $Script_Hit
+    Call UseIdleAnimation ( .Actor:Self .True )
+    Return
+    End
+}
+
+#new:Script $Script_Hit
+{
+    SetConst *Var0 .Part:FalseBowser
+    ExecWait DoNormalHit
+    Return
+    End
+}
+
+#new:Script $Script_Death
+{
+    Call HideHealthBar ( .Actor:Self )
+    Call UseIdleAnimation ( .Actor:Self .False)
+    Set *Var2 EXEC_DEATH_NO_SPINNING
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Set *Var3 1000`
+    Set *Var4 1000`
+    PlayEffect(EFFECT_SHAPE_SPELL 2 *Var0 *Var1 *Var2 *Var3 *Var4 *Var5 30` 0 )
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Add *Var1 10`
+    Add *Var2 10`
+    PlayEffect(EFFECT_BIG_SMOKE_PUFF *Var0 *Var1 *Var2 0 0 0 0 0)
+    Call PlaySoundAtActor ( .Actor:Self SOUND_ACTOR_DEATH )
+    Call DropStarPoints ( .Actor:Self )
+    Call SetPartFlagBits ( .Actor:Self .Part:FalseBowser ACTOR_PART_FLAG_INVISIBLE .True )
+    Call SetActorFlagBits ( .Actor:Self ACTOR_FLAG_NO_SHADOW .True )
+    Wait 30`
+    Call UseBattleCamPreset ( BTL_CAM_DEFAULT )
+    % ExecWait $Script_ForceNextTarget
+    Call RemoveActor ( .Actor:Self)
+    Return
+    End
+}
+
+#new:Script $Script_BurnHit
+{
+    Call GetLastEvent ( .Actor:Self *Var3 )
+    If == *Var3 36`
+        Call RemoveActorDecoration ( .Actor:Self .Part:FalseBowser 1)
+        Call SetPartEventBits ( .Actor:Self .Part:FalseBowser ACTOR_EVENT_FLAG_ENCHANTED .False )
+    EndIf
+    Call SetAnimation ( .Actor:Self *Var0 *Var1 )
+    Call GetDamageSource ( *Var3 )
+    Switch *Var3
+        Case == (DMG_SRC_FIRE_SHELL)
+            Call GetOriginalActorType ( .Actor:Self *Var7 )
+            Switch *Var7
+                CaseOR == (ACTOR_TYPE_MONTY_MOLE)
+                CaseOR == (ACTOR_TYPE_MONTY_MOLE_BOSS)
+                EndCaseGroup
+                Default
+                    Call GetActorPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                    Call SetActorJumpGravity ( .Actor:Self *Fixed[0.01] )
+                    Add *Var5 55`
+                    Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6)
+                    Call JumpToGoal ( .Actor:Self 8` .False .False .False )
+            EndSwitch
+            Set *Var7 0`
+            Loop 30`
+                Add *Var7 48`
+                Call SetActorYaw ( .Actor:Self *Var7 )
+                Wait 1`
+            EndLoop
+            Call GetOriginalActorType ( .Actor:Self *Var7 )
+            Switch *Var7
+                CaseOR == (ACTOR_TYPE_MONTY_MOLE)
+                CaseOR == (ACTOR_TYPE_MONTY_MOLE_BOSS)
+                    Wait 30`
+                EndCaseGroup
+                Default
+                    Sub *Var5 55`
+                    Call SetActorJumpGravity ( .Actor:Self *Fixed[0.8] )
+                    If == *Var5 0`
+                        Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                        Call JumpToGoal ( .Actor:Self 15` .False .True .False )
+                        Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                        Call JumpToGoal ( .Actor:Self 10` .False .True .False )
+                        Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                        Call JumpToGoal ( .Actor:Self 5` .False .True .False )
+                    Else
+                        Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                        Call JumpToGoal ( .Actor:Self 15` .False .False .False )
+                        Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                        Call JumpToGoal ( .Actor:Self 10` .False .False .False )
+                        Call SetGoalPos ( .Actor:Self *Var4 *Var5 *Var6 )
+                        Call JumpToGoal ( .Actor:Self 5` .False .False .False )
+                    EndIf
+            EndSwitch
+        Default
+            Wait 20`
+    EndSwitch
+    If != *Var2 -1`
+        Call SetAnimation ( .Actor:Self *Var0 *Var2 )
+    EndIf
+    Wait 10`
+    Call GetLastEvent ( .Actor:Self *Var1 )
+    Switch(*Var1)
+        Case == .Event:BurnHit
+            Call GetPartEventFlags ( .Actor:Self *Var0 *Var1 )
+            IfNotFlag(*Var1 ACTOR_EVENT_FLAG_FIREY | ACTOR_EVENT_FLAG_EXPLODE_ON_IGNITION)
+                Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+                Call GetActorSize ( .Actor:Self *Var3 *Var4 )
+                Call GetStatusFlags ( .Actor:Self *Var5 )
+                IfFlag(*Var5 .Status:FLAG_Shrink)
+                    MulF *Var3 *Fixed[0.4]
+                    MulF *Var4 *Fixed[0.4]
+                EndIf
+                DivF *Var3 *Fixed[2.0]
+                Call GetActorFlags ( .Actor:Self *Var5 )
+                IfFlag(*Var5 ACTOR_FLAG_UPSIDE_DOWN)
+                    SubF *Var1 *Var3
+                Else
+                    AddF *Var1 *Var3
+                EndIf
+                AddF *Var2 *Fixed[5.0]
+                DivF *Var3 *Fixed[10.0]
+                Call GetStatusFlags ( .Actor:Self *Var5 )
+                IfFlag(*Var5 .Status:FLAG_Shrink)
+                    MulF *Var3 *Fixed[0.4]
+                    IfLt *Var3 1`
+                        SetF *Var3 *Fixed[1.0]
+                    EndIf
+                EndIf
+                PlayEffect(EFFECT_SMOKE_BURST 0 *Var0 *Var1 *Var2 *Var3 10 0)
+            EndIf
+        Case == .Event:BurnDeath
+            % do nothing
+    EndSwitch
+    Return
+    End
+}
+
+#new:Script $Script_ShockReaction
+{
+    If != *Var1 -1`
+        Call SetAnimation ( .Actor:Self *Var0 *Var1 )
+    EndIf
+    Call UseBattleCamPreset ( BTL_CAM_DEFAULT )
+    Call SetActorJumpGravity ( .Actor:Self *Fixed[1.4] )
+    Call SetGoalToHome ( .Actor:Self )
+    Call GetGoalPos ( .Actor:Self *Var2 *Var3 *Var4 )
+    Call GetActorPos ( .Actor:Self *Var5 *Var6 *Var7 )
+    Set *Var8 *Var2
+    Add *Var8 *Var5
+    Div *Var8 2`
+    Set *Var9 *Var4
+    Add *Var9 *Var7
+    Div *Var9 2`
+    Call SetGoalPos ( .Actor:Self *Var8 0` *Var9 )
+    Call JumpToGoal ( .Actor:Self 15` .False .True .False )
+    Add *Var8 *Var2
+    Div *Var8 2`
+    Add *Var9 *Var4
+    Div *Var9 2`
+    Call SetGoalPos ( .Actor:Self *Var8 0` *Var9 )
+    Call JumpToGoal ( .Actor:Self 8` .False .True .False )
+    Call SetGoalPos ( .Actor:Self *Var2 *Var3 *Var4 )
+    Call JumpToGoal ( .Actor:Self 5` .False .True .False )
+    Return
+    End
+}
+
+#new:Script $Script_NoDamageHit
+{
+    SetConst *Var0 .Part:FalseBowser
+    ExecWait DoImmune
+    Return
+    End
+}
+
+#new:Script $Script_ReturnHome
+{
+    Set *Var0 .Part:FalseBowser
+    Call GetActorPos ( .Actor:Self *VarA *VarB *VarC )
+    Call SetGoalToHome ( .Actor:Self )
+    Call GetGoalPos ( .Actor:Self *VarD *VarE *VarF )
+    Call SetActorYaw ( .Actor:Self 0` )
+    Call GetDist2D ( *Var9 *VarA *VarC *VarD *VarF )
+    IfGe *Var9 *Fixed[5.0]
+        Call SetAnimation ( .Actor:Self *Var0 *Var1 )
+        Call RunToGoal ( .Actor:Self 0` .False )
+    EndIf
+    If == *VarB 180`
+        Loop 15`
+            Sub *VarB 12`
+            Call SetActorYaw ( .Actor:Self *VarB )
+            Wait 1`
+        EndLoop
+    EndIf
+    Call SetActorYaw ( .Actor:Self 0` )
+    Return
+    End
+}
+
+#new:Script $Script_TakeTurn_FalseBowser
+{
+    Call UseIdleAnimation ( .Actor:Self .False )
+    Call UseIdleAnimation ( .Actor:Self .False )
+    ExecWait $Script_TakeTurn_Inner
+    Call UseIdleAnimation ( .Actor:Self .True )
+    Return
+    End
+}
+
+#new:Script $Script_TakeTurn_Inner
+{
+    Call AddActorVar ( .Actor:Self .AVar:TurnCount 1` )
+    ExecWait $Script_UseAttack
+    Return
+    End
+}
+
+#define .Attack:Jump 0`
+#define .Attack:FireBall 1`
+
+#new:Script $Script_UseAttack
+{
+    Call RandInt ( 100` *Var1 )
+    Switch *Var1
+        CaseLt(50)
+            Set *Var0 .Attack:Jump
+        Default
+            Set *Var0 .Attack:FireBall
+    EndSwitch
+    Switch *Var0
+        Case == .Attack:Jump
+            ExecWait $Script_Attack_Jump
+        Case ==  .Attack:FireBall
+            ExecWait $Script_Attack_FireBall
+    EndSwitch
+    Return
+    End
+}
+
+#new:Script $Script_Attack_Jump
+{
+    Call SetTargetActor ( .Actor:Self .Actor:Player )
+    Call GetStatusFlags ( .Actor:Self *Var0 )
+    IfNotFlag(*Var0 .Status:FLAG_Shrink)
+        Call UseBattleCamPreset ( BTL_CAM_ENEMY_APPROACH )
+        Call SetBattleCamZoom ( 300` )
+        Call SetBattleCamOffsetZ ( 36` )
+        Call BattleCamTargetActor ( .Actor:Self )
+        Call MoveBattleCamOver ( 40` )
+        Call 8024ECF8 ( -1` 1` .False )
+    Else
+        Call UseBattleCamPreset ( BTL_CAM_ENEMY_APPROACH )
+        Call SetBattleCamZoom ( 240` )
+        Call SetBattleCamOffsetZ ( 14` )
+        Call BattleCamTargetActor ( .Actor:Self )
+        Call MoveBattleCamOver ( 40` )
+        Call 8024ECF8 ( -1` 1` .False )
+    EndIf
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Walk )
+    Call SetGoalToTarget ( .Actor:Self )
+    Call AddGoalPos ( .Actor:Self 60` 0` 0` )
+    Call SetActorSpeed ( .Actor:Self *Fixed[4.5] )
+    Call RunToGoal ( .Actor:Self 0` .False )
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Idle )
+    Wait 15`
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PreJump )
+    Wait 3`
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Jump )
+    Call SetActorJumpGravity ( .Actor:Self *Fixed[1.2] )
+    Call EnemyTestTarget ( .Actor:Self *VarA 0` 0` 1` BS_FLAGS1_INCLUDE_POWER_UPS )
+    Switch *VarA
+        CaseOR == (HIT_RESULT_MISS)
+        CaseOR == (HIT_RESULT_LUCKY)
+            Call SetGoalToTarget ( .Actor:Self )
+            Call GetGoalPos ( .Actor:Self *Var0 *Var1 *Var2 )
+            Sub *Var0 30`
+            Set *Var1 0`
+            Call SetActorSounds ( .Actor:Self ACTOR_SOUND_JUMP SOUND_NONE 0` )
+            Call SetGoalPos ( .Actor:Self *Var0 *Var1 *Var2 )
+            Call JumpToGoal ( .Actor:Self 18` .False .True .False )
+            Sub *Var0 35`
+            Call SetGoalPos ( .Actor:Self *Var0 *Var1 *Var2 )
+            Call JumpToGoal ( .Actor:Self 14` .False .True .False )
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PostJump )
+            Wait 3`
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Idle )
+            Wait 25`
+            Call UseBattleCamPreset ( BTL_CAM_DEFAULT )
+            If == *VarA HIT_RESULT_LUCKY
+                Call EnemyTestTarget ( .Actor:Self *Var0 DAMAGE_TYPE_TRIGGER_LUCKY 0` 0` 0` )
+            EndIf
+            Call SetActorSpeed ( .Actor:Self *Fixed[6.0] )
+            Set *Var1 .Anim:FalseBowser_Walk
+            ExecWait $Script_ReturnHome
+            Return
+        EndCaseGroup
+        Default
+    EndSwitch
+    Call SetGoalToTarget ( .Actor:Self )
+    Call JumpToGoal ( .Actor:Self 15` .False .True .False )
+    Thread
+        Call ShakeCam ( CAM_BATTLE 0` 4` *Fixed[3.0] )
+    EndThread
+    Wait 2`
+    Call SetGoalToTarget ( .Actor:Self )
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Land )
+    Call EnemyDamageTarget ( .Actor:Self *VarF 0` 0` 0` .Damage:Jump BS_FLAGS1_TRIGGER_EVENTS )
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Add *Var0 40`
+    Set *Var1 0`
+    Call SetActorSounds ( .Actor:Self ACTOR_SOUND_JUMP SOUND_NONE 0` )
+    Call SetGoalPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Call JumpToGoal ( .Actor:Self 18` .False .True .False )
+    Call PlaySoundAtActor ( .Actor:Self SOUND_HEAVY_NPC_LANDING )
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PostJump )
+    Wait 3`
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Idle )
+    Wait 15`
+    Switch(*VarF)
+        CaseOR == (HIT_RESULT_HIT)
+        CaseOR == (HIT_RESULT_NO_DAMAGE)
+        CaseOR == (HIT_RESULT_10)
+            If == *VarF HIT_RESULT_10
+                Return
+            EndIf
+            Call UseBattleCamPreset ( BTL_CAM_DEFAULT )
+            Call SetActorSpeed ( .Actor:Self *Fixed(6.0) )
+            Set *Var1 .Anim:FalseBowser_Walk
+            ExecWait $Script_ReturnHome
+        EndCaseGroup
+    EndSwitch
+    Return
+    End
+}
+
+#new:Script $Script_Attack_FireBall
+{
+    Call SetTargetActor ( .Actor:Self .Actor:Player )
+    Call SetGoalToTarget ( .Actor:Self )
+    Call UseBattleCamPreset ( BTL_CAM_PRESET_19 )
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Sub *Var0 30`
+    Add *Var1 65`
+    Call SetBattleCamTarget ( *Var0 *Var1 *Var2 )
+    Call SetBattleCamZoom ( 400` )
+    Call MoveBattleCamOver ( 40` )
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PreFireBreath )
+    Wait 45`
+    Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_FireBreathStill )
+    Call UseBattleCamPreset ( BTL_CAM_DEFAULT )
+    Call MoveBattleCamOver ( 55` )
+    Wait 15`
+    Call GetActorPos ( .Actor:Self *Var0 *Var1 *Var2 )
+    Wait 15`
+    Call SetGoalToTarget ( .Actor:Self )
+    Call EnemyTestTarget ( .Actor:Self *VarA 0 0 1 BS_FLAGS1_INCLUDE_POWER_UPS )
+    Switch *VarA
+        CaseOR == (HIT_RESULT_MISS)
+        CaseOR == (HIT_RESULT_LUCKY)
+            % Wait 10`
+            % Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_FireBreathLoop )
+            % Wait 30`
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PostFireBreath )
+            Wait 15`
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Idle )
+            % Wait 15`
+            % ExecWait $Script_AttackMissed
+            If == *VarA HIT_RESULT_LUCKY
+                Call EnemyTestTarget ( .Actor:Self *Var0 DAMAGE_TYPE_TRIGGER_LUCKY 0 0 0 )
+            EndIf
+            Wait 15`
+            Return
+        EndCaseGroup
+        Default
+    EndSwitch
+    Wait 2`
+    Call SetGoalToTarget ( .Actor:Self )
+    Call EnemyDamageTarget ( .Actor:Self *VarF DAMAGE_TYPE_FIRE SUPPRESS_EVENT_ALL 0 DMG_FIRE_BALL BS_FLAGS1_TRIGGER_EVENTS )
+    Switch *VarF
+        CaseOR == (HIT_RESULT_HIT)
+        CaseOR == (HIT_RESULT_NO_DAMAGE)
+        CaseOR == (HIT_RESULT_10)
+            % Wait 10`
+            % Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_FireBreathLoop )
+            % Wait 30`
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_PostFireBreath )
+            Wait 15`
+            Call SetAnimation ( .Actor:Self .Part:FalseBowser .Anim:FalseBowser_Idle )
+            If == *VarF HIT_RESULT_10
+                Return
+            EndIf
+        EndCaseGroup
+    EndSwitch
+    Return
+    End
+}

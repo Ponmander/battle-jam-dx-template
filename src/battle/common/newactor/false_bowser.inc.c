@@ -37,16 +37,16 @@ enum N(ActorParams) {
 };
 
 s32 N(DefaultAnims)[] = {
-    STATUS_KEY_NORMAL,    ANIM_BattleBowser_Idle,
-    STATUS_KEY_STONE,     ANIM_BattleBowser_Still,
-    STATUS_KEY_SLEEP,     ANIM_BattleBowser_Idle,
-    STATUS_KEY_POISON,    ANIM_BattleBowser_Idle,
-    STATUS_KEY_STOP,      ANIM_BattleBowser_Still,
-    STATUS_KEY_STATIC,    ANIM_BattleBowser_Still,
-    STATUS_KEY_PARALYZE,  ANIM_BattleBowser_Still,
-    STATUS_KEY_PARALYZE,  ANIM_BattleBowser_Still,
-    STATUS_KEY_DIZZY,     ANIM_BattleBowser_Idle,
-    STATUS_KEY_DIZZY,     ANIM_BattleBowser_Idle,
+    STATUS_KEY_NORMAL,    ANIM_BattleBowser_BowsersBrother_Idle,
+    STATUS_KEY_STONE,     ANIM_BattleBowser_BowsersBrother_Still,
+    STATUS_KEY_SLEEP,     ANIM_BattleBowser_BowsersBrother_Idle,
+    STATUS_KEY_POISON,    ANIM_BattleBowser_BowsersBrother_Idle,
+    STATUS_KEY_STOP,      ANIM_BattleBowser_BowsersBrother_Still,
+    STATUS_KEY_STATIC,    ANIM_BattleBowser_BowsersBrother_Still,
+    STATUS_KEY_PARALYZE,  ANIM_BattleBowser_BowsersBrother_Still,
+    STATUS_KEY_PARALYZE,  ANIM_BattleBowser_BowsersBrother_Still,
+    STATUS_KEY_DIZZY,     ANIM_BattleBowser_BowsersBrother_Idle,
+    STATUS_KEY_DIZZY,     ANIM_BattleBowser_BowsersBrother_Idle,
     STATUS_END,
 };
 
@@ -178,8 +178,8 @@ EvtScript N(EVS_Idle) = {
 
 EvtScript N(EVS_PlayFootstepSounds) = {
     Call(GetAnimation, ACTOR_SELF, PRT_MAIN, LVar7)
-    IfNe(LVar7, ANIM_BattleBowser_Walk)
-        IfEq(LVar3, ANIM_BattleBowser_Walk)
+    IfNe(LVar7, ANIM_BattleBowser_BowsersBrother_Walk)
+        IfEq(LVar3, ANIM_BattleBowser_BowsersBrother_Walk)
             Call(PlaySoundAtActor, ACTOR_SELF, SOUND_GOOMBA_STEP)
             Call(PlaySoundAtActor, ACTOR_SELF, SOUND_GOOMBA_STEP)
         EndIf
@@ -217,82 +217,82 @@ EvtScript N(EVS_HandleEvent) = {
     Switch(LVar0)
         CaseEq(EVENT_BEGIN_FIRST_STRIKE)
         CaseEq(EVENT_HIT_COMBO)
-            Set(LVar1, ANIM_BattleBowser_Hurt)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_Hit))
             Return
         CaseEq(EVENT_HIT)
-            Set(LVar1, ANIM_BattleBowser_Hurt)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_BasicHit))
             Return
         CaseEq(EVENT_DEATH)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_Hit))
             Wait(10)
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_Death))
             Return
         CaseEq(EVENT_BURN_HIT)
             Set(LVar0, PRT_MAIN)
-            Set(LVar1, ANIM_BattleBowser_BurnHurt)
-            Set(LVar2, ANIM_BattleBowser_BurnStill)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_BurnHurt)
+            Set(LVar2, ANIM_BattleBowser_BowsersBrother_BurnStill)
             ExecWait(N(EVS_BurnHit))
             Return
         CaseEq(EVENT_BURN_DEATH)
             Set(LVar0, PRT_MAIN)
-            Set(LVar1, ANIM_BattleBowser_BurnHurt)
-            Set(LVar2, ANIM_BattleBowser_BurnStill)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_BurnHurt)
+            Set(LVar2, ANIM_BattleBowser_BowsersBrother_BurnStill)
             ExecWait(N(EVS_BurnHit))
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_BurnStill)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_BurnStill)
             ExecWait(N(EVS_Death))
             Return
         CaseEq(EVENT_SPIN_SMASH_HIT)
-            Set(LVar1, ANIM_BattleBowser_Hurt)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_BasicHit))
             Return
         CaseEq(EVENT_SPIN_SMASH_DEATH)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_Hit))
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_Death))
             Return
         CaseEq(EVENT_SHOCK_HIT)
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(EVS_Enemy_ShockHit)
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_ShockReaction))
             Call(SetActorSpeed, ACTOR_SELF, Float(6.0))
-            Set(LVar1, ANIM_BattleBowser_Walk)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Walk)
             ExecWait(N(EVS_ReturnHome))
         CaseEq(EVENT_SHOCK_DEATH)
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(EVS_Enemy_ShockHit)
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_ShockReaction))
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Hurt)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Hurt)
             ExecWait(N(EVS_Death))
             Return
         CaseOrEq(EVENT_ZERO_DAMAGE)
         CaseOrEq(EVENT_IMMUNE)
-            Set(LVar1, ANIM_BattleBowser_Idle)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Idle)
             ExecWait(N(EVS_NoDamageHit))
         EndCaseGroup
         CaseEq(EVENT_AIR_LIFT_FAILED)
             SetConst(LVar0, PRT_MAIN)
-            Set(LVar1, ANIM_BattleBowser_Idle)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Idle)
             ExecWait(EVS_Enemy_NoDamageHit)
         CaseEq(EVENT_RECOVER_STATUS)
             SetConst(LVar0, PRT_MAIN)
-            SetConst(LVar1, ANIM_BattleBowser_Jump)
+            SetConst(LVar1, ANIM_BattleBowser_BowsersBrother_Jump)
             ExecWait(EVS_Enemy_Recover)
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PostJump)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PostJump)
             Call(ShakeCam, CAM_BATTLE, 0, 4, Float(3.0))
         CaseDefault
     EndSwitch
@@ -555,16 +555,16 @@ EvtScript N(EVS_Attack_Jump) = {
         Call(MoveBattleCamOver, 40)
         Call(func_8024ECF8, BTL_CAM_MODEY_MINUS_1, BTL_CAM_MODEX_1, FALSE)
     EndIf
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Walk)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Walk)
     Call(SetGoalToTarget, ACTOR_SELF)
     Call(AddGoalPos, ACTOR_SELF, 60, 0, 0)
     Call(SetActorSpeed, ACTOR_SELF, Float(4.5))
     Call(RunToGoal, ACTOR_SELF, 0, FALSE)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Idle)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Idle)
     Wait(15)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PreJump)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PreJump)
     Wait(3)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Jump)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Jump)
     Call(SetActorJumpGravity, ACTOR_SELF, Float(1.2))
     Call(EnemyTestTarget, ACTOR_SELF, LVarA, 0, 0, 1, BS_FLAGS1_INCLUDE_POWER_UPS)
     Switch(LVarA)
@@ -588,16 +588,16 @@ EvtScript N(EVS_Attack_Jump) = {
                 Call(N(StartRumbleWithParams), 80, 14)
                 Call(ShakeCam, CAM_BATTLE, 0, 4, Float(2.0))
             EndThread
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PostJump)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PostJump)
             Wait(3)
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Idle)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Idle)
             Wait(25)
             Call(UseBattleCamPreset, BTL_CAM_DEFAULT)
             IfEq(LVarA, HIT_RESULT_LUCKY)
                 Call(EnemyTestTarget, ACTOR_SELF, LVar0, DAMAGE_TYPE_TRIGGER_LUCKY, 0, 0, 0)
             EndIf
             Call(SetActorSpeed, ACTOR_SELF, Float(6.0))
-            Set(LVar1, ANIM_BattleBowser_Walk)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Walk)
             ExecWait(N(EVS_ReturnHome))
             Return
         EndCaseGroup
@@ -610,7 +610,7 @@ EvtScript N(EVS_Attack_Jump) = {
     EndThread
     Wait(2)
     Call(SetGoalToTarget, ACTOR_SELF)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Land)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Land)
     // Call(SetDamageSource, DMG_SRC_CRUSH)
     Call(EnemyDamageTarget, ACTOR_SELF, LVarF, 0, 0, 0, DMG_JUMP, BS_FLAGS1_TRIGGER_EVENTS)
     // Call(LandJump, ACTOR_SELF)
@@ -626,9 +626,9 @@ EvtScript N(EVS_Attack_Jump) = {
         Call(N(StartRumbleWithParams), 80, 14)
         Call(ShakeCam, CAM_BATTLE, 0, 4, Float(3.0))
     EndThread
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PostJump)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PostJump)
     Wait(3)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Idle)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Idle)
     Wait(15)
     Switch(LVarF)
         CaseOrEq(HIT_RESULT_HIT)
@@ -639,7 +639,7 @@ EvtScript N(EVS_Attack_Jump) = {
             EndIf
             Call(UseBattleCamPreset, BTL_CAM_DEFAULT)
             Call(SetActorSpeed, ACTOR_SELF, Float(6.0))
-            Set(LVar1, ANIM_BattleBowser_Walk)
+            Set(LVar1, ANIM_BattleBowser_BowsersBrother_Walk)
             ExecWait(N(EVS_ReturnHome))
         EndCaseGroup
     EndSwitch
@@ -648,7 +648,7 @@ EvtScript N(EVS_Attack_Jump) = {
 };
 
 // EvtScript N(EVS_AttackMissed) = {
-//     Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Tantrum)
+//     Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Tantrum)
 //     Thread
 //         Wait(5)
 //         Loop(4)
@@ -656,7 +656,7 @@ EvtScript N(EVS_Attack_Jump) = {
 //             Call(ShakeCam, CAM_BATTLE, 0, 2, Float(2.0))
 //             Wait(4)
 //         EndLoop
-//         Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Idle)
+//         Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Idle)
 //     EndThread
 //     Return
 //     End
@@ -672,9 +672,9 @@ EvtScript N(EVS_Attack_FireBall) = {
     Call(SetBattleCamTarget, LVar0, LVar1, LVar2)
     Call(SetBattleCamZoom, 400)
     Call(MoveBattleCamOver, 40)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PreFireBreath)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PreFireBreath)
     Wait(45)
-    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_FireBreathStill)
+    Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_FireBreathStill)
     Call(UseBattleCamPreset, BTL_CAM_DEFAULT)
     Call(MoveBattleCamOver, 55)
     Wait(15)
@@ -687,11 +687,11 @@ EvtScript N(EVS_Attack_FireBall) = {
         CaseOrEq(HIT_RESULT_MISS)
         CaseOrEq(HIT_RESULT_LUCKY)
             // Wait(10)
-            // Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_FireBreathLoop)
+            // Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_FireBreathLoop)
             // Wait(30)
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PostFireBreath)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PostFireBreath)
             Wait(15)
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Idle)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Idle)
             // Wait(15)
             // ExecWait(N(EVS_AttackMissed))
             IfEq(LVarA, HIT_RESULT_LUCKY)
@@ -718,11 +718,11 @@ EvtScript N(EVS_Attack_FireBall) = {
         CaseOrEq(HIT_RESULT_NO_DAMAGE)
         CaseOrEq(HIT_RESULT_10)
             // Wait(10)
-            // Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_FireBreathLoop)
+            // Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_FireBreathLoop)
             // Wait(30)
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_PostFireBreath)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_PostFireBreath)
             Wait(15)
-            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_Idle)
+            Call(SetAnimation, ACTOR_SELF, PRT_MAIN, ANIM_BattleBowser_BowsersBrother_Idle)
             IfEq(LVarF, HIT_RESULT_10)
                 Return
             EndIf
