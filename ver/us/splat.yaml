@@ -6729,13 +6729,12 @@ segments:
     - [auto, c, script/dig_03]
     - [auto, c, script/dig_04]
     - [auto, c, script/dig_05]
-#  - [0x6F0B30]
   - dir: battle/area/jam
     type: code
     start: auto
     vram_class: battle_area
     subsegments:
-    - [auto, c, actor/false_bowser]
+    - [auto, c, actor/jr_troopa]
     - [auto, c, area]
 
 #######################

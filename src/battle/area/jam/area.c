@@ -1,22 +1,21 @@
 #include "area.h"
 
-#include "battle/common/newstage/area_jam/jam_01.inc.c"
+#include "battle/common/stage/area_kmr/kmr_05b.inc.c"
 
-extern ActorBlueprint A(false_bowser);
+extern ActorBlueprint A(jr_troopa);
 
-// TODO Make New Battle Stage Map.
-extern Stage A(jam_01);
+extern Stage A(kmr_05b);
 
 Formation A(Formation_00) = {
-    ACTOR_BY_IDX(A(false_bowser), BTL_POS_GROUND_B, 10),
+    ACTOR_BY_IDX(A(jr_troopa), BTL_POS_GROUND_C, 10),
 };
 
 BattleList A(Formations) = {
-    BATTLE(A(Formation_00), A(jam_01), "False Bowser Battle"),
+    BATTLE(A(Formation_00), A(kmr_05b), "Jr. Troopa Battle"),
     {},
 };
 
 StageList A(Stages) = {
-    STAGE("jam_01", A(jam_01)),
+    STAGE("kmr_05", A(kmr_05b)),
     {},
 };

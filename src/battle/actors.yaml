@@ -2334,14 +2334,3 @@
     stepDelay: [ 30, 30 ]
     tattleCamOffset: [ 0, 0, 0 ]
     shadowOffset: 0
-- FalseBowser:
-    level: 10
-    nameMsg: MSG_Misc_FalseBowserName
-    tattleMsg: MSG_Misc_FalseBowserTattle
-    walkSound: [ SOUND_NONE, SOUND_NONE ]
-    flySound: [ SOUND_NONE, SOUND_NONE ]
-    jumpSound: SOUND_LARGE_ACTOR_JUMP
-    hurtSound: SOUND_NONE
-    stepDelay: [ 30, 30 ]
-    tattleCamOffset: [ 0, 0, 0 ]
-    shadowOffset: 241

@@ -54,18 +54,18 @@ void clear_player_data(void) {
     D_8010CD10 = FALSE;
     D_8010CD12 = FALSE;
 
-    playerData->curHP = 10;
-    playerData->curMaxHP = 10;
-    playerData->hardMaxHP = 10;
-    playerData->curFP = 5;
-    playerData->curMaxFP = 5;
-    playerData->hardMaxFP = 5;
-    playerData->maxBP = 3;
-    playerData->level = 1;
-    playerData->bootsLevel = 0;
-    playerData->hammerLevel = -1;
-    playerData->hasActionCommands = FALSE;
-    playerData->coins = 0;
+    playerData->curHP = 50;
+    playerData->curMaxHP = 50;
+    playerData->hardMaxHP = 50;
+    playerData->curFP = 50;
+    playerData->curMaxFP = 50;
+    playerData->hardMaxFP = 50;
+    playerData->maxBP = 30;
+    playerData->level = 27;
+    playerData->bootsLevel = 2;
+    playerData->hammerLevel = 2;
+    playerData->hasActionCommands = TRUE;
+    playerData->coins = 999;
     playerData->starPieces = 0;
     playerData->starPoints = 0;
     playerData->unused_011 = 0;
@@ -75,8 +75,8 @@ void clear_player_data(void) {
     playerData->merleeCastsLeft = 0;
     playerData->merleeTurnCount = -1;
 
-    playerData->maxStarPower = 0;
-    playerData->starPower = 0;
+    playerData->maxStarPower = 7;
+    playerData->starPower = 10;
     playerData->starBeamLevel = 0;
 
     playerData->curPartner = PARTNER_NONE;
@@ -102,6 +102,7 @@ void clear_player_data(void) {
     }
 
     for (i = 0; i < ARRAY_COUNT(playerData->equippedBadges); i++) {
+        playerData->equippedBadges[1] = ITEM_PEEKABOO;
         playerData->equippedBadges[i] = ITEM_NONE;
     }
 

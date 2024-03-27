@@ -1,14 +1,16 @@
-#message:2F:(Misc_FalseBowserName) {
-	Bowser?[End]
+#message:2F:(Misc_JrTroopaInteract) {
+	[Style right]
+	I bet you can't even beat me in[BR]
+	this example battle Mario![BR][Yield][End]
 }
 
-#message:2F:(Misc_FalseBowserTattle) {
+#message:2F:(Misc_JrTroopaTaunt) {
 	[Style right]
-	This is Bowser?[Wait][End]
+	Afraid to fight me Mario?[BR]
+	[Wait][End]
 }
 
-#message:2F:(Misc_BowserInteract) {
+#message:2F:(Misc_Test) {
 	[Style right]
-	[Voice bowser]
-	Gwaah ha ha ha ha ha!!!!![BR][Wait][End]
+	Test[BR][Wait][End]
 }
